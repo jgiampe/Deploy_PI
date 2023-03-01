@@ -15,9 +15,9 @@ export const getRecipesByName = (name) => {
         try {
             let recipes 
             if(name)
-                recipes = (await axios.get(`http://localhost:3001/recipes?name=${name}`)).data;
+                recipes = (await axios.get(`/recipes?name=${name}`)).data;
             else
-                recipes = (await axios.get(`http://localhost:3001/recipes`)).data;
+                recipes = (await axios.get(`/recipes`)).data;
 
 
             return dispatch ({type: GET_RECIPES_BY_NAME, payload: recipes}) 
@@ -32,7 +32,7 @@ export const getRecipeById = (id) => {
         console.log(id)
         try {
             console.log('no hay error')
-            const recipe = (await axios.get(`http://localhost:3001/recipes/${id}`)).data;
+            const recipe = (await axios.get(`/recipes/${id}`)).data;
             console.log(recipe.diets)
             return dispatch ({type: GET_RECIPE_BY_ID, payload: recipe}) 
         } catch (error) {
@@ -46,7 +46,7 @@ export const getRecipeById = (id) => {
 export const createRecipe = (data) => {
     return async (dispatch) => {
         try {
-            let result = await axios.post(`http://localhost:3001/recipes`,data)
+            let result = await axios.post(`/recipes`,data)
             if(typeof result === 'string')
                 window.alert('An error ocurred')
             else
@@ -64,7 +64,7 @@ export const createRecipe = (data) => {
 export const getDiets = () => {
     return async (dispatch) => {
         try {
-            let diets = (await axios.get(`http://localhost:3001/diets`)).data
+            let diets = (await axios.get(`/diets`)).data
                 //Coloco en mayuscula la primer letra y cada letra luego de un espacio
                 .map(el=> 
                     el.split(' ')
