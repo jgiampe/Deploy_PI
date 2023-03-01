@@ -149,7 +149,7 @@ const getRecipeById = async (id) =>{
 const getRecipesByName = async(title) => {
     
     //busco en API
-    let apiRaw = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${title}&addRecipeInformation=true&number=10&apiKey=${APIKEY1}`)).data.results;
+    let apiRaw = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${title}&addRecipeInformation=true&number=30&apiKey=${APIKEY1}`)).data.results;
     //busco en DB
     let dbRaw = await Recipe.findAll({
         where:{
@@ -173,7 +173,7 @@ const getRecipesByName = async(title) => {
 
 const getAllRecipes = async () => {
     
-    const apiRaw = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?&addRecipeInformation=true&number=10&apiKey=${APIKEY1}`)).data.results;
+    const apiRaw = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?&addRecipeInformation=true&number=30&apiKey=${APIKEY1}`)).data.results;
     const dbRaw = await Recipe.findAll({include: {
         model:Diet,
         attributes:['name'],        //traigo solo la columna name de Diets
