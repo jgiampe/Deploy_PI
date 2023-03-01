@@ -6,7 +6,7 @@ import {Create, Detail, Error, Home, Splash} from './views/index.js'
 import Nav from './components/Nav/Nav.jsx'
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'https://deploypi-production.up.railway.app'
 
 function App() {
 
