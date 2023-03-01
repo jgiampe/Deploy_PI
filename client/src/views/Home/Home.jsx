@@ -34,6 +34,10 @@ export default function Home(){
             dispatch(getRecipesByName());
     },[name])
     
+    useEffect(() => {
+        setIndex(0)
+    },[name])
+
     useEffect(()=>{
         if(init===1)
         {
