@@ -1,14 +1,17 @@
 import axios from "axios";
 
-export const GET_RECIPES_BY_NAME = 'GET_RECIPES_BY_NAME';
-export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
-export const CREATE_RECIPE = 'CREATE_RECIPE';
-export const GET_DIETS = 'GET_DIETS';
-export const FILTER = 'FILTER';
-export const ORDER = 'ORDER';
-export const AUTHENTICATE = 'AUTHENTICATE';
-export const LOGOUT = 'LOGOUT';
+// export const GET_RECIPES_BY_NAME = 'GET_RECIPES_BY_NAME';
+// export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
+// export const CREATE_RECIPE = 'CREATE_RECIPE';
+// export const GET_DIETS = 'GET_DIETS';
+// export const FILTER = 'FILTER';
+// export const ORDER = 'ORDER';
+// export const AUTHENTICATE = 'AUTHENTICATE';
+// export const LOGOUT = 'LOGOUT';
 
+
+//ACTIONS
+import { getRecByName, getRecById, getAllDiets, filterFood, orderFood, userLogin, userLogout, createNewRecipe} from './slices.js';
 
 export const getRecipesByName = (name) => {
     return async (dispatch) => {
@@ -20,7 +23,7 @@ export const getRecipesByName = (name) => {
                 recipes = (await axios.get(`/recipes`)).data;
 
 
-            return dispatch ({type: GET_RECIPES_BY_NAME, payload: recipes}) 
+            return dispatch(getRecByName(recipes)) 
         } catch (error) {
             console.log(error)
         }   
@@ -34,11 +37,11 @@ export const getRecipeById = (id) => {
             console.log('no hay error')
             const recipe = (await axios.get(`/recipes/${id}`)).data;
             console.log(recipe.diets)
-            return dispatch ({type: GET_RECIPE_BY_ID, payload: recipe}) 
+            return dispatch (getRecById(recipe)) 
         } catch (error) {
             console.log('Hay un error')
             console.log(error)
-            return dispatch ({type: GET_RECIPE_BY_ID, payload: {error:'The recipe does not exist'}})
+            return dispatch (getRecById({error:'The recipe does not exist'}))
         }   
     }
 }
@@ -53,7 +56,7 @@ export const createRecipe = (data) => {
             {    
                 window.alert('Recipe created successfully')
             }
-            return dispatch ({type: CREATE_RECIPE}) 
+            return dispatch (createNewRecipe()) 
         } catch (error) {
             // console.log(error)
             window.alert('An error ocurred')
@@ -71,7 +74,7 @@ export const getDiets = () => {
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ')
                 )
-            return dispatch ({type: GET_DIETS, payload:diets}) 
+            return dispatch (getAllDiets(diets)) 
         } catch (error) {
             console.log(error)
             window.alert('Hubo un error: Ver en consola')
@@ -79,10 +82,10 @@ export const getDiets = () => {
     }
 }
 
-export const order = (prop) => ({type: ORDER, payload: prop})
+export const order = (prop) => orderFood(prop)
 
-export const filter = (prop) => ({type: FILTER, payload: prop})
+export const filter = (prop) => filterFood(prop)
 
-export const authenticate = (data) => ({type: AUTHENTICATE, payload: data})
+export const authenticate = (data) => userLogin(data)
 
-export const logout = () => ({type: LOGOUT})
+export const logout = () => userLogout()

@@ -10,8 +10,8 @@ export default function Detail(){
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    const recipe = useSelector(state=>state.idRecipe)
-    const dietList = useSelector(state=>state.diets.map(el=>el.toLowerCase()))
+    const recipe = useSelector(state=>state.foods.idRecipe)
+    const dietList = useSelector(state=>state.foods.diets.map(el=>el.toLowerCase()))
 
    
 

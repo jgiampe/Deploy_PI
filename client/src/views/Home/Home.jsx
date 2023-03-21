@@ -11,7 +11,7 @@ import Sorry from '../../components/Sorry/Sorry.jsx'
 
 
 export default function Home(){    
-    const recipes = useSelector(state=>state.filteredRecipes)
+    const recipes = useSelector(state=>state.foods.filteredRecipes)
     const [index, setIndex] = useState(0)
     const [loader, setLoader] = useState(true)
     const [init, setInit] = useState(0)
@@ -23,11 +23,12 @@ export default function Home(){
         filter: 'ALL',
         changed:''
     }) ;
-    const found = useSelector(state=>state.allRecipes.length)
+    const found = useSelector(state=>state.foods.allRecipes.length)
     
     useEffect(()=>{
         setInit(1);
         setLoader(true);
+        console.log('USEEFFECT HOME')
         if(name)
             dispatch(getRecipesByName(name));    
         else

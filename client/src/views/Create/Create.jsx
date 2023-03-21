@@ -7,12 +7,12 @@ import { getDiets, createRecipe, authenticate,logout } from '../../redux/actions
 export default function Create(){
     
     const [data, setData] = useState({ title: '', summary: '', healthScore:'', instructions:'', image:'', diets:[]});
-    const dbDiets = useSelector(state=>state.diets);
+    const dbDiets = useSelector(state=>state.foods.diets);
     const [formDiets, setFormDiets] = useState({newDiet:'', diets:dbDiets})
     const [init, setInit] = useState(0);
     const dispatch = useDispatch();
     const [isChecked, setIsChecked] = useState([...Array(12).fill(false)]);
-    const isAdmin = useSelector(state=>state.isAdmin)
+    const isAdmin = useSelector(state=>state.foods.isAdmin)
     const [authentication, setAuthentication] = useState({user:'', pass:''})
 
     useEffect(()=>{

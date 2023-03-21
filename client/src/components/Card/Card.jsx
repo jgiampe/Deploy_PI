@@ -7,7 +7,7 @@ import ScoreBar from '../ScoreBar/ScoreBar.jsx'
 
 export default function Card ({id, title, image, summary, healthScore, diets}){
 
-    const dietList = useSelector(state=>state.diets.map(el=>el.toLowerCase()))
+    const dietList = useSelector(state=>state.foods.diets.map(el=>el.toLowerCase()))
 
 
     const navigate = useNavigate();

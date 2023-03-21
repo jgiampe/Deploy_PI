@@ -6,7 +6,7 @@ import { filter, getDiets, order } from "../../redux/actions.js";
 export default function Filters({filters, setFilters}){
 
     const dispatch = useDispatch();
-    const diets = useSelector(state=>state.diets)
+    const diets = useSelector(state=>state.foods.diets)
     // const [filters, setFilters] = useState(
     //     {
     //         sortBy: 'title', 
